@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <DuckovPath>E:\Local\Steam\steamapps\common\Escape from Duckov</DuckovPath>
+        <SubPath>\Duckov_Data\Managed\</SubPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="$(DuckovPath)$(SubPath)TeamSoda.*">
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="$(DuckovPath)$(SubPath)ItemStatsSystem.dll">
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="$(DuckovPath)$(SubPath)FMODUnity.dll">
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="$(DuckovPath)$(SubPath)Unity*">
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+</Project>
