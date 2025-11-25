@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FMOD.Studio;
 using FMODUnity;
@@ -14,7 +15,7 @@ namespace NeedForCrown
     {
         private static string MOD_NAME = "NeedForCrown";
 
-        private static int CROWN_ID = 1254;
+        private static int CROWN_ID = 1254, KEY_X = 827, KEY_O = 828;
 
         private static string LEVEL_FARM = "Level_Farm_01";
 
@@ -39,6 +40,35 @@ namespace NeedForCrown
 
             if (scene_name != LEVEL_FARM)
                 return;
+
+            var inventory = LevelManager.Instance?.PetProxy?.Inventory;
+            if (inventory == null)
+                return;
+
+            bool key_x = false, key_o = false;
+            foreach (var item in inventory)
+            {
+                if (item.TypeID == KEY_X)
+                    key_x = true;
+                else if (item.TypeID == KEY_O)
+                    key_o = true;
+                if (item.Slots != null)
+                    foreach (var slot in item.Slots)
+                    {
+                        if (slot.Content == null)
+                            continue;
+                        if (slot.Content.TypeID == KEY_X)
+                            key_x = true;
+                        else if (slot.Content.TypeID == KEY_O)
+                            key_o = true;
+                    }
+            }
+            Log($"KeyX: {key_x}, KeyO: {key_o}");
+            if (!(key_x && key_o))
+            {
+                Log("狗子身上需要有神秘钥匙X+O");
+                return;
+            }
 
             bool crown = false;
             List<(string, int)> items = new List<(string, int)>();
