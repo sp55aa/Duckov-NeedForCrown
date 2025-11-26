@@ -79,7 +79,7 @@ namespace NeedForCrown
             }
 
             if (items.Count == 0) {
-                CharacterMainControl.Main.PopText("皇冠呢？");
+                CharacterMainControl.Main.PopText("我皇冠呢？");
                 return;
             }
 
