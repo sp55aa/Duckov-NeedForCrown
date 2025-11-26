@@ -48,8 +48,8 @@ namespace NeedForCrown
             var (key_x, key_o) = FindKeyXO(LevelManager.Instance?.PetProxy?.Inventory, false, false);
             (key_x, key_o) = FindKeyXO(LevelManager.Instance?.MainCharacter?.CharacterItem?.Inventory, key_x, key_o);
             Log($"KeyX: {key_x}, KeyO: {key_o}");
-            if (!(key_x && key_o)) {
-                Log("需要带上神秘钥匙X和神秘钥匙O");
+            if (!key_x && !key_o) {
+                Log("身上总得带把神秘钥匙吧");
                 return;
             }
 
@@ -92,7 +92,7 @@ namespace NeedForCrown
                 foreach (var (name, id) in items) {
                     msg += $" {name}";
                     if (id == CARD_PURPLE)
-                        msg += "(可能在紫卡小屋?)";
+                        msg += "(可能在紫卡小屋)";
                 }
             }
             CharacterMainControl.Main.PopText(msg);
